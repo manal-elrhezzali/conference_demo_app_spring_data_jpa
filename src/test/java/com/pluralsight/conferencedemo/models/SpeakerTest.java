@@ -77,4 +77,23 @@ public class SpeakerTest {
         List<Speaker> speakers = repository.findByCompanyIn(companies);
         assertTrue(speakers.size() > 0);
     }
+
+    @Test
+    public void testJpaIgnoreCase() throws Exception {
+        List<Speaker> speakers = repository.findByCompanyIgnoreCase("national bank");
+        assertTrue(speakers.size() > 0);
+    }
+
+    @Test
+    public void testJpaOrderBy() throws Exception {
+        List<Speaker> speakers = repository.findByLastNameOrderByFirstNameAsc("Clark");
+        assertTrue(speakers.size() > 0);
+    }
+
+    @Test
+    public void testJpaFirst() throws Exception {
+        Speaker speaker = repository.findFirstByFirstName("James");
+        assertTrue(speaker.getFirstName().equals("James"));
+    }
+
 }
