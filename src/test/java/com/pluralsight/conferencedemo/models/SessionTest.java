@@ -30,4 +30,9 @@ public class SessionTest {
         assertTrue(sessions.size() > 0);
     }
 
+    @Test
+    public void testJpaNotLike() throws Exception {
+        List<Session> sessions = jpaRepository.findBySessionNameNotLike("Java%");
+        assertTrue(sessions.size() > 0);
+    }
 }

@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface SessionJpaRepository extends JpaRepository<Session, Long> {
   List<Session> findBySessionNameContains(String name);
   List<Session> findBySessionLengthNot(Integer sessionLength);
+  List<Session> findBySessionNameNotLike(String name);
+
 }
