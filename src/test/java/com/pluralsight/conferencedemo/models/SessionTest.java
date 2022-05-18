@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
@@ -34,5 +35,12 @@ public class SessionTest {
     public void testJpaNotLike() throws Exception {
         List<Session> sessions = jpaRepository.findBySessionNameNotLike("Java%");
         assertTrue(sessions.size() > 0);
+    }
+
+
+    @Test
+    public void testJpaStartingWith() throws Exception {
+        List<Session> sessions = jpaRepository.findBySessionNameStartingWith("Java");
+        assertTrue(sessions.size() == 0);
     }
 }
