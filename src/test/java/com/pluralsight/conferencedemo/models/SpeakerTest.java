@@ -2,6 +2,7 @@ package com.pluralsight.conferencedemo.models;
 
 import com.pluralsight.conferencedemo.repositories.SpeakerJpaRepository;
 import com.pluralsight.conferencedemo.repositories.SpeakerRepository;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -62,4 +63,18 @@ public class SpeakerTest {
         assertTrue(speakers.size() > 0);
     }
 
+    @Test
+    public void testJpaNull() throws Exception {
+        List<Speaker> speakers = repository.findBySpeakerPhotoNull();
+        assertTrue(speakers.size() > 0);
+    }
+
+    @Test
+    public void testJpaIn() throws Exception {
+        List<String> companies = new ArrayList<>();
+        companies.add("National Bank");
+        companies.add("Contoso");
+        List<Speaker> speakers = repository.findByCompanyIn(companies);
+        assertTrue(speakers.size() > 0);
+    }
 }
